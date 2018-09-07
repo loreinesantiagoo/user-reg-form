@@ -46,18 +46,18 @@
 
   </div>
 
-  <mat-radio-group>
+  <mat-radio-group *ngIf="registrationForm">
       <mat-radio-button value="Male">Male</mat-radio-button>
       <mat-radio-button value="Female">Female</mat-radio-button>
   </mat-radio-group>
 
 
   <mat-form-field >Date of Birth:
-    <input type="date" formControlName="dob" placeholder="Date of Birth" ngModel matInput [matDatepicker]="dob">
+    <input  formControlName="dob" placeholder="Date of Birth"   matInput [matDatepicker]="dob" required>
 
     <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
 
-    <mat-datepicker></mat-datepicker>
+    <mat-datepicker #dob></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field *ngIf="registrationForm" fxLayout="column row">

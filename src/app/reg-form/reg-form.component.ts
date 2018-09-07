@@ -51,12 +51,11 @@ registrationForm = new FormGroup ({
       .getUser(registrationForm.value)
       .subscribe((data: any) => {
         console.log(data);
-        this.registerMe.push(registrationForm);
+
+        // thank
       });
     registrationForm.resetForm();
-  }
 
-  onSelect(value) {
-    return value;
+    this.router.navigate(['/RegFile']);
   }
 }

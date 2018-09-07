@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-reg-file',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reg-file.component.css']
 })
 export class RegFileComponent implements OnInit {
-registrationForm: string[] = [];
+@Input() registrationForm: string[] = [];
   constructor() { }
 
   ngOnInit() {
