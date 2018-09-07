@@ -19,7 +19,7 @@
 
   <div>
 
-    <mat-form-field >
+    <mat-form-field fxLayout="column row">
       <input type="password" placeholder="Create password" formControlName="password"  matInput required password>
     </mat-form-field>
    
@@ -46,10 +46,11 @@
 
   </div>
 
-  <mat-form-field (click)="onSelect()" fxLayout="row column" fxLayoutAlign="space-between">
-    <input type="radio" formControlName="gender" value="Male">Male
-    <input type="radio" formControlName="gender" value="Female">Female
-  </mat-form-field>
+  <mat-radio-group>
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
+  </mat-radio-group>
+
 
   <mat-form-field >Date of Birth:
     <input type="date" formControlName="dob" placeholder="Date of Birth" ngModel matInput [matDatepicker]="dob">
@@ -59,15 +60,15 @@
     <mat-datepicker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field *ngIf="registrationForm" fxLayout="column row">
     <input type="text" placeholder="Address" formControlName="address" matInput>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field *ngIf="registrationForm">
     <input type="text" placeholder="Country" formControlName="country" matInput>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field *ngIf="registrationForm">
     <input type="number" placeholder="Contact" formControlName="contact" matInput>
   </mat-form-field>
 
@@ -80,5 +81,5 @@
 </form>
 
 <p>
-  Form Status: {{ profileForm.status }}
+  Form Status: {{ registrationForm.status }}
 </p>

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatToolbarModule,
@@ -8,7 +7,8 @@ import { MatToolbarModule,
         MatButtonModule,
         MatIconModule,
         MatDatepickerModule,
-        MatListModule
+        MatListModule,
+        MatRadioModule
      } from '@angular/material';
 
 const MODULES = [ FlexLayoutModule,
@@ -19,7 +19,8 @@ const MODULES = [ FlexLayoutModule,
   MatIconModule,
   MatDatepickerModule,
   MatMomentDateModule,
-  MatListModule
+  MatListModule,
+  MatRadioModule
 
 ];
 @NgModule({

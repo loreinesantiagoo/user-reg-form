@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', component: RegFormComponent},
   { path: 'reg-form', component: RegFormComponent },
   { path: 'reg-file', component: RegFileComponent },
-  { path: '**', component: '/full' }
+  { path: '', redirectTo: '/RegFormComponent', pathMatch: 'full' }
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes)

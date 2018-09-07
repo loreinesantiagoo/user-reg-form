@@ -1,3 +1,6 @@
 form {
     margin: 10px;
 }
+.mat-radio-button ~ .mat-radio-button {
+    padding-right: 16px;
+  }
