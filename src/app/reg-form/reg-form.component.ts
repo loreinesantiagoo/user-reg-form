@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-
-import { FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from './user-interface';
 
-import { equalValueValidator } from './equal-value-validator';
 
 
 @Component({
@@ -16,62 +13,50 @@ import { equalValueValidator } from './equal-value-validator';
   styleUrls: ['./reg-form.component.css']
 })
 export class RegFormComponent implements OnInit {
+public user: User;
 
-  registrationForm = new FormGroup ({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    gender: new FormControl(''),
-    dob: new FormControl('') ,
-    address: new FormControl(''),
-    country: new FormControl(''),
-    contact: new FormControl('')
+registrationForm = new FormGroup ({
+    'name': new FormControl(''),
+    'email': new FormControl(''),
+    'password': new FormControl(''),
+    'gender': new FormControl(''),
+    'dob': new FormControl('') ,
+    'address': new FormControl(''),
+    'country': new FormControl(''),
+    'contact': new FormControl('')
   });
 
 
-  constructor(private userSvc: UserService, private fb: FormBuilder) { }
+  constructor(private userSvc: UserService, private router: Router) { }
 
 
 
-  OnInit() {
-    this.buildForm();
-
-  }
-  buildForm() {
-    this.registrationForm = this.fb.group({
-      'username': ['', [
-        Validators.required
-      ]
-      ],
-      'password': ['', [
-        Validators.required,
-        Validators.minLength(8)
-      ]
-      ],
-      'confirmPassword': ['', [
-        Validators.required,
-        Validators.minLength(8)
-      ]
-      ]
-    },
-      { validator: equalValueValidator('password', 'confirmPassword') }  // key is to validate on the form group
-    );
+  ngOnInit() {
+    this.user = {
+      username: '',
+      email: '',
+      password: '',
+      // confirmPassword: '',
+      gender: '',
+      dob: '',
+      address: '',
+      country: '',
+      contact: 0
+    };
   }
 
-  register() {
-    // do somthing
-  }
   registerMe(registrationForm: NgForm) {
     console.log('form: ', this.registrationForm.value);
     this.userSvc
-      .addUser(registrationForm.value)
-      .subscribe((data) => {
+      .getUser(registrationForm.value)
+      .subscribe((data: any) => {
         console.log(data);
+        this.registerMe.push(registrationForm);
       });
     registrationForm.resetForm();
   }
 
-  checkEmailFromUS(value) {
-    return false;
+  onSelect(value) {
+    return value;
   }
 }

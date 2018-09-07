@@ -6,15 +6,18 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { RegFormComponent } from './reg-form/reg-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './/app-routing.module';
+import { RegFormComponent } from './reg-form/reg-form.component';
+import { RegFileComponent } from './reg-file/reg-file.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegFormComponent
+    RegFormComponent,
+    RegFileComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

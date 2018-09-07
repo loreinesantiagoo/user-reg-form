@@ -1,12 +1,16 @@
-<form [formGroup]="profileForm" (ngSubmit)="registerMe()" fxLayout="column row" fxLayoutGap="2vw">
 
-  <mat-form-field *ngIf="registrationForm">
-    <input type="text" placeholder="Your name" [(ngModel)]="regForm.name" matInput required>
+
+<form [formGroup]="registrationForm" (ngSubmit)="registerMe()" 
+*ngIf="registrationForm" fxLayout="column row" fxLayoutGap="2vw">
+
+  <mat-form-field>
+    <input type="text" placeholder="Your name" formControlName="name" matInput required>
     <mat-hint>Your official name</mat-hint>
+    
   </mat-form-field>
 
-  <mat-form-field *ngIf="registrationForm">
-    <input type="email" placeholder="Your email" [(ngModel)]="regForm.email" matInput required>
+  <mat-form-field >
+    <input type="email" placeholder="Your email" formControlName="email" matInput required email>
     <mat-hint>Your email</mat-hint>
     <mat-error *ngIf="">
       Must be a valid email
@@ -15,9 +19,10 @@
 
   <div>
 
-    <mat-form-field *ngIf="registrationForm">
-      <input type="password" placeholder="Create password" [(ngModel)]="regForm.password" matInput required password>
+    <mat-form-field >
+      <input type="password" placeholder="Create password" formControlName="password"  matInput required password>
     </mat-form-field>
+   
     <div>
       <mat-list>Your password must:
         <ul>
@@ -37,32 +42,40 @@
         </ul>
       </mat-list>
     </div>
-    <mat-error *ngIf="password">
-      Must be a valid password
-    </mat-error>
+    
 
   </div>
 
-  <mat-form-field fxLayout="row column" fxLayoutAlign="space-between">
-    <input type="radio" formControlName="gender" value="Yes">Male
-    <input type="radio" formControlName="gender" value="No">Female
+  <mat-form-field (click)="onSelect()" fxLayout="row column" fxLayoutAlign="space-between">
+    <input type="radio" formControlName="gender" value="Male">Male
+    <input type="radio" formControlName="gender" value="Female">Female
+  </mat-form-field>
+
+  <mat-form-field >Date of Birth:
+    <input type="date" formControlName="dob" placeholder="Date of Birth" ngModel matInput [matDatepicker]="dob">
+
+    <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+
+    <mat-datepicker></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
-    <input formControlName="dob" placeholder="Date of Birth" ngModel matInput [matDatepicker]="dob">
-
-    <mat-datepicker-toggle matSuffix [for]="dob">
-    </mat-datepicker-toggle>
-
-    <mat-datepicker dob></mat-datepicker>
+    <input type="text" placeholder="Address" formControlName="address" matInput>
   </mat-form-field>
 
+  <mat-form-field>
+    <input type="text" placeholder="Country" formControlName="country" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="number" placeholder="Contact" formControlName="contact" matInput>
+  </mat-form-field>
 
   <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="8px">
     <button type="reset" mat-button mat-raised-button color="primary">
       Clear
     </button>
-    <button type="submit" mat-button mat-raised-button color="primary" [disabled]="!profileForm.valid">Submit</button>
+    <button type="submit" mat-button mat-raised-button color="primary" [disabled]="!registrationForm.valid">Submit</button>
   </div>
 </form>
 
