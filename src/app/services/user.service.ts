@@ -15,6 +15,7 @@ export class UserService {
 
 
   getUser(user): Observable<any> {
+    console.log('sevrice received');
     return this.http
     .post(`${environment.api_url}regUser`, user)
     .pipe(
